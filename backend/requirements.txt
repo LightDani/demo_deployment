@@ -1,5 +1,5 @@
-fastapi
-uvicorn
-tensorflow
+fastapi==0.104.1
+uvicorn==0.24.0
+tensorflow==2.15.0
 pillow
-python-multipart
+python-multipart==0.0.6
