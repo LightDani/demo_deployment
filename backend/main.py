@@ -3,8 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import tensorflow as tf
 import numpy as np
-from PIL import Image
-import io
 
 app = FastAPI()
 
