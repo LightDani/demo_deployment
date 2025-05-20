@@ -1,6 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 import tensorflow as tf
 import numpy as np
 
@@ -14,7 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("model/arabic_model.keras")
+model = tf.saved_model.load("model/deployed_model/1")
 
 arabic_letters = [
     "ا - Alif",
@@ -61,8 +60,7 @@ def preprocess_image(image_bytes):
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image_tensor = preprocess_image(image_bytes)
-    prediction = model.predict(image_tensor)
-
+    prediction = model(image_tensor)
     predicted_class = int(np.argmax(prediction[0]))
     confidence = float(np.max(prediction[0]))
 
