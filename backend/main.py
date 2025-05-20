@@ -51,10 +51,12 @@ arabic_letters = [
 
 
 def preprocess_image(image_bytes):
-    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    image = image.resize((32, 32))
-    image_array = np.array(image) / 255.0
-    return np.expand_dims(image_array, axis=0)
+    image = tf.io.decode_image(image_bytes, channels=1)
+    image = tf.image.resize(image, [32, 32])
+    image = image / 255.0
+    image_tensor = tf.expand_dims(image, 0)
+    image_tensor = image_tensor.numpy().tolist()
+    return image_tensor
 
 
 @app.post("/predict")
