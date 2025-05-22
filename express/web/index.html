@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Arabic Letter \& TFJS Predictor</title>
+		<script src="script.js" defer></script>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				padding: 20px;
+			}
+			section {
+				margin-bottom: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Arabic Letter Prediction</h1>
+		<section>
+			<form id="upload-form">
+				<input type="file" id="file-input" required />
+				<button type="submit">Predict</button>
+			</form>
+			<div id="result"></div>
+		</section>
+
+		<h1>Parabola Predictor (TFJS)</h1>
+		<section>
+			<form id="tfjs-form">
+				<label for="x-input">Enter X value:</label>
+				<input type="number" id="x-input" step="any" required />
+				<button type="submit">Predict Y</button>
+			</form>
+			<div id="tfjs-result"></div>
+		</section>
+	</body>
+</html>
