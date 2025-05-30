@@ -64,7 +64,8 @@ def preprocess_image(image_bytes):
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image_tensor = preprocess_image(image_bytes)
-    prediction = model(image_tensor)
+    prediction = model(image_tensor)  # predict using .pb model
+    prediction = model.predict(image_tensor)  # predict using .h5 model
     predicted_class = int(np.argmax(prediction[0]))
     confidence = float(np.max(prediction[0]))
 
