@@ -57,6 +57,7 @@ def preprocess_image(image_bytes):
     image = image / 255.0
     image_tensor = tf.expand_dims(image, 0)
     image_tensor = image_tensor.numpy().tolist()
+    print(f"Image tensor shape: {image_tensor[0].shape}")  # Debugging line
     return image_tensor
 
 
@@ -64,7 +65,7 @@ def preprocess_image(image_bytes):
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image_tensor = preprocess_image(image_bytes)
-    prediction = model(image_tensor)  # predict using .pb model
+    # prediction = model(image_tensor)  # predict using .pb model
     prediction = model.predict(image_tensor)  # predict using .h5 model
     predicted_class = int(np.argmax(prediction[0]))
     confidence = float(np.max(prediction[0]))
