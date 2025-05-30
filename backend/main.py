@@ -13,7 +13,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.saved_model.load("model/deployed_model/1")
+# load model using .pb
+# model = tf.saved_model.load("model/deployed_model/1")
+
+# load model using .h5
+model = tf.keras.models.load_model("model/model.h5", compile=False)
 
 arabic_letters = [
     "ا - Alif",
