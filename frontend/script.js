@@ -6,7 +6,11 @@ const tfjsForm = document.getElementById("tfjs-form");
 const xInput = document.getElementById("x-input");
 const tfjsResult = document.getElementById("tfjs-result");
 
+// production
 const API_URL = "https://demodeployment-production-2205.up.railway.app/predict";
+
+// development
+// const API_URL = "https://demodeployment-production-7543.up.railway.app/predict";
 
 // 1. FastAPI image prediction
 form.addEventListener("submit", async (e) => {
