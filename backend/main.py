@@ -57,7 +57,6 @@ def preprocess_image(image_bytes):
     image = image / 255.0
     image_tensor = tf.expand_dims(image, 0)
     image_tensor = image_tensor.numpy().tolist()
-    print(f"Image tensor shape: {image_tensor[0].shape}")  # Debugging line
     return image_tensor
 
 
