@@ -17,7 +17,10 @@ app.add_middleware(
 # model = tf.saved_model.load("model/deployed_model/1")
 
 # load model using .h5
-model = tf.keras.models.load_model("model/model.h5", compile=False)
+# model = tf.keras.models.load_model("model/model.h5", compile=False)
+
+# load model using .keras
+model = tf.keras.models.load_model("model/arabic_model.keras")
 
 arabic_letters = [
     "ا - Alif",
@@ -65,7 +68,7 @@ async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image_tensor = preprocess_image(image_bytes)
     # prediction = model(image_tensor)  # predict using .pb model
-    prediction = model.predict(image_tensor)  # predict using .h5 model
+    prediction = model.predict(image_tensor)  # predict using .h5 model and .keras model
     predicted_class = int(np.argmax(prediction[0]))
     confidence = float(np.max(prediction[0]))
 
