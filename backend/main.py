@@ -15,6 +15,7 @@ app.add_middleware(
 
 # load model using .pb
 # model = tf.saved_model.load("model/deployed_model/1")
+# model_infer = model.signatures["serving_default"]
 
 # load model using .h5
 model = tf.keras.models.load_model("model/model.h5", compile=False)
@@ -64,7 +65,7 @@ def preprocess_image(image_bytes):
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image_tensor = preprocess_image(image_bytes)
-    # prediction = model(image_tensor)  # predict using .pb model
+    # prediction = model_infer(image_tensor)  # predict using .pb model
     prediction = model.predict(image_tensor)  # predict using .h5 model
     predicted_class = int(np.argmax(prediction[0]))
     confidence = float(np.max(prediction[0]))
