@@ -20,7 +20,7 @@ app.add_middleware(
 # model = tf.keras.models.load_model("model/model.h5", compile=False)
 
 # load model using .keras
-model = tf.keras.models.load_model("model/arabic_model.keras")
+model = tf.keras.models.load_model("model/arabic_model.keras", compile=False)
 
 arabic_letters = [
     "ا - Alif",
