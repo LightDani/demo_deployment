@@ -15,6 +15,7 @@ app.add_middleware(
 
 # load model using .pb
 # model = tf.saved_model.load("model/deployed_model/1")
+# model_infer = model.signatures["serving_default"]
 
 # load model using .h5
 # model = tf.keras.models.load_model("model/model.h5", compile=False)
